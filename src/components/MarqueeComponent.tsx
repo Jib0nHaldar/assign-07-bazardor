@@ -1,10 +1,11 @@
+import { toBengaliNumber, getBengaliUnit } from "@/lib/bengali-utils";
 import Marquee from "react-fast-marquee";
 
 
 type Product = {
     id: number;
     nameBn: string;
-    categoryIcon: string;
+    image: string;
     unit: string;
     today: number;
     change: {
@@ -19,26 +20,6 @@ const MarqueeComponent = async () => {
     );
 
     const data: Product[] = await res.json();
-
-    const toBengaliNumber = (value: number | string) => {
-        const bengaliDigits = "০১২৩৪৫৬৭৮৯";
-
-        return value
-            .toString()
-            .replace(/\d/g, (digit) => bengaliDigits[Number(digit)]);
-    };
-
-    const getBengaliUnit = (unit: string) => {
-        const units: Record<string, string> = {
-            kg: "কেজি",
-            liter: "লিটার",
-            litre: "লিটার",
-            piece: "পিস",
-            dozen: "ডজন",
-        };
-
-        return units[unit] || unit;
-    };
 
     const changedProducts = data.filter(
         (h) => h.change.dir === "up" || h.change.dir === "down"
@@ -58,7 +39,7 @@ const MarqueeComponent = async () => {
                             key={h.id}
                             className="flex items-center gap-2 whitespace-nowrap"
                         >
-                            <span>{h.categoryIcon}</span>
+                            <span>{h.image}</span>
 
                             <span>{h.nameBn}</span>
 
