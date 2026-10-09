@@ -28,7 +28,7 @@ const Banner = () => {
                 </p>
 
                 <Link
-                    href="/products"
+                    href="/AllProducts"
                     className="rounded-lg bg-green-600 px-6 py-3 text-lg font-bold text-white transition hover:bg-green-700"
                 >
                     সব পণ্য দেখুন
