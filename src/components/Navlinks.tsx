@@ -19,7 +19,7 @@ const Navlinks = async () => {
             {data.map((n) => (
                 <Link
                     key={n.id}
-                    href={`/${n.slug}`}
+                    href={`/category/${n.slug}`}
                     className=" text-sm"
                 >
                     {n.icon}

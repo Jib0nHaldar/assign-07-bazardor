@@ -2,7 +2,7 @@ import { toBengaliNumber, getBengaliUnit } from "@/lib/bengali-utils";
 import Marquee from "react-fast-marquee";
 
 
-type Product = {
+export type Product = {
     id: number;
     nameBn: string;
     image: string;
