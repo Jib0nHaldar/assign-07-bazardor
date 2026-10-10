@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navlinks from "./Navlinks";
 
+
 const Navbar = () => {
     const date = new Date().toLocaleDateString("bn-BD", {
         dateStyle: "full",
@@ -36,14 +37,14 @@ const Navbar = () => {
                     {/* Authentication Buttons */}
                     <div className="flex gap-3">
                         <Link
-                            href="/sign-in"
+                            href="/signin"
                             className="btn btn-active"
                         >
                             সাইন ইন
                         </Link>
 
                         <Link
-                            href="/sign-up"
+                            href="/signup"
                             className="btn btn-active btn-success"
                         >
                             সাইন আপ
