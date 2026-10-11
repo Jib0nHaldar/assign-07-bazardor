@@ -1,6 +1,7 @@
 
 import { toBengaliNumber, getBengaliUnit } from "@/lib/bengali-utils";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface Market {
     market: string;
@@ -70,6 +71,10 @@ const ProductsDetailsPage = async ({
         : priceDown
             ? "text-green-600"
             : "text-gray-600";
+
+    if (!product) {
+        notFound();
+    }
 
     return (
         <main className="min-h-screen bg-[#F0F5F0] px-4 py-6 sm:px-6">

@@ -31,6 +31,7 @@ const ProfilePage = () => {
     }
 
 
+
     const [name, setName] = useState("");
     const [isUpdating, setIsUpdating] = useState(false);
     const [message, setMessage] = useState("");
