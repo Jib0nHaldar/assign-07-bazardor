@@ -1,8 +1,10 @@
 "use client";
 
+// import { Github } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signIn } from "@/lib/auth-client";
+import { signIn, authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 import {
     Button,
@@ -44,6 +46,22 @@ const SignInPage = () => {
             toast.error("একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।");
         }
     };
+
+    const handleGoogleSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+            callbackURL: "/",
+        });
+        // console.log("Google Sign-In Data:", data);
+    }
+
+    const handleGitHubSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "github",
+            callbackURL: "/",
+        });
+        // console.log("GitHub Sign-In Data:", data);
+    }
 
     return (
         <main className="flex min-h-[80vh] items-center justify-center bg-gradient-to-br from-amber-50 via-white to-orange-50 px-4 py-12">
@@ -130,6 +148,39 @@ const SignInPage = () => {
                 >
                     সাইন ইন করুন
                 </Button>
+
+                <div className="flex items-center gap-3 text-xs text-gray-400">
+                    <div className="h-px flex-1 bg-gray-200" />
+                    অথবা
+                    <div className="h-px flex-1 bg-gray-200" />
+                </div>
+
+                <div>
+
+                    {/* Social Login Buttons */}
+                    <div className="grid w-full grid-cols-2 gap-3">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            className="w-full border-gray-300 bg-white text-gray-700 transition hover:bg-gray-50"
+                            onPress={handleGoogleSignIn}
+                        >
+                            <FcGoogle size={20} />
+                            <span>Google</span>
+                        </Button>
+
+                        <Button
+                            type="button"
+                            variant="outline"
+                            className="w-full border-gray-300 bg-white text-gray-700 transition hover:bg-gray-50"
+                            onPress={handleGitHubSignIn}
+                        >
+                            {/* <Github size={20} /> */}
+                            <span>GitHub</span>
+                        </Button>
+                    </div>
+
+                </div>
 
                 {/* Signup Link */}
                 <div className="w-full border-t border-gray-100 pt-5 text-center">

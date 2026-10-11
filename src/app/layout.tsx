@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="bn"
+      lang="bn" 
       data-theme="light"
       className={`${notoSerifBengali.className} h-full antialiased`}>
 

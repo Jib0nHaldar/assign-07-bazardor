@@ -17,15 +17,17 @@ const UserInfo = () => {
     };
 
     return (
-      <div className="flex items-center">
+        <div className="flex items-center">
             {user ? (
                 <div className="flex items-center gap-3 rounded-full border border-base-300 bg-base-100 py-1 pl-1 pr-3 shadow-sm">
                     <div className="avatar placeholder">
-                        <div className="w-9 rounded-full bg-primary text-primary-content">
-                            <span className="text-sm font-semibold uppercase">
-                                {user.name?.charAt(0)}
-                            </span>
-                        </div>
+                        <Link href="/profile">
+                            <div className="w-9 rounded-full bg-primary text-primary-content">
+                                <span className="text-2xl font-bold uppercase">
+                                    {user.name?.trim()?.charAt(0) || "U"}
+                                </span>
+                            </div>
+                        </Link>
                     </div>
                     <h2 className="max-w-[140px] truncate text-sm font-medium">
                         {user.name}
