@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navlinks from "./Navlinks";
 import MarqueeComponent from "@/components/MarqueeComponent";
+import UserInfo from "./UserInfo";
 
 
 const Navbar = () => {
@@ -37,26 +38,9 @@ const Navbar = () => {
                             </div>
                         </div>
                     </Link>
-
-                    {/* Authentication Buttons */}
-                    <div className="flex gap-3">
-                        <Link
-                            href="/signin"
-                            className="btn btn-active"
-                        >
-                            সাইন ইন
-                        </Link>
-
-                        <Link
-                            href="/signup"
-                            className="btn btn-active btn-success"
-                        >
-                            সাইন আপ
-                        </Link>
-                    </div>
+                    <UserInfo />
                 </div>
             </header>
-
             <Navlinks />
             <MarqueeComponent />
         </>
