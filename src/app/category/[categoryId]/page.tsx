@@ -1,4 +1,5 @@
 import { getBengaliUnit, toBengaliNumber } from "@/lib/bengali-utils";
+// import { console } from "inspector/promises";
 
 const CategoryPage = async ({
     params,
@@ -7,13 +8,11 @@ const CategoryPage = async ({
 }) => {
     const { categoryId } = await params;
 
-    const res = await fetch(
-        `https://api.abcz.workers.dev/api/bazardor/products?category=${encodeURIComponent(categoryId)}`
-    );
+    console.log("Category ID:", categoryId);
 
-    if (!res.ok) {
-        throw new Error(`Failed to fetch products: ${res.status}`);
-    }
+    const res = await fetch(
+        `https://openapi.programming-hero.com/api/bazardor/products?category=${encodeURIComponent(categoryId)}`
+    );
 
     const data = await res.json();
 

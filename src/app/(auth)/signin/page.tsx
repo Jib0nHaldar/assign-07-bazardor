@@ -1,20 +1,48 @@
 "use client";
 
 import Link from "next/link";
-import {Button, Description,FieldError,Form,Input,Label, TextField,} from "@heroui/react";
+import { useRouter } from "next/navigation";
+import { signIn } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import {
+    Button,
+    Description,
+    FieldError,
+    Form,
+    Input,
+    Label,
+    TextField,
+} from "@heroui/react";
 
 const SignInPage = () => {
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const router = useRouter();
+
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
-        const data: Record<string, string> = {};
 
-        formData.forEach((value, key) => {
-            data[key] = value.toString();
-        });
+        const email = formData.get("email")?.toString() ?? "";
+        const password = formData.get("password")?.toString() ?? "";
 
-        alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+        try {
+            const { error } = await signIn.email({
+                email,
+                password,
+            });
+
+            if (error) {
+                toast.error(error.message || "সাইন ইন করা যায়নি।");
+                return;
+            }
+
+            toast.success("সফলভাবে সাইন ইন হয়েছে!");
+
+            router.push("/");
+            router.refresh();
+        } catch {
+            toast.error("একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+        }
     };
 
     return (
@@ -25,9 +53,8 @@ const SignInPage = () => {
             >
                 {/* Heading */}
                 <div className="w-full text-center">
-
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-                       সাইন ইন
+                        সাইন ইন
                     </h1>
 
                     <p className="mt-3 text-sm leading-6 text-gray-500">
@@ -99,7 +126,7 @@ const SignInPage = () => {
                 {/* Sign In Button */}
                 <Button
                     type="submit"
-                    className="w-full rounded-xl bg-green-700 py-3 font-bold text-white shadow-md shadow-amber-500/20 transition hover:bg-green-400"
+                    className="w-full rounded-xl bg-green-700 py-3 font-bold text-white shadow-md transition hover:bg-green-600"
                 >
                     সাইন ইন করুন
                 </Button>
